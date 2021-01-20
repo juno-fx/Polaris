@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  workstation:
+    build:
+      context: .
+    environment:
+      - PASS=nom-nom()
+      - USER=root
+    ports:
+      - 5901:5901
+    volumes:
+      - ./config:/transfer

@@ -49,6 +49,7 @@ WORKDIR /root/
 COPY xstartup .vnc/
 COPY start-vncserver.sh .
 COPY config .config
+COPY theme/logos/ /usr/share/backgrounds/junofx/
 ADD theme/Breeze-Blur-Glassy-Dark.tar.gz .icons/
 
 # set up configuration

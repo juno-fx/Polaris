@@ -2,18 +2,36 @@ version: '3.7'
 
 services:
   polaris:
+    tty: true
+    hostname: polaris
     image: junofx/polaris:0.1.0
+    env_file:
+      - .env
     build:
       context: .
       dockerfile: Dockerfile
     environment:
-      - PAS=nom-nom()
-      - USR=testing
       - RES=1920x1080
+      - LUNA=polaris
     ports:
       - 5901:5901
+    volumes:
+      - ./config:/transfer
+
+  luna:
+    tty: true
+    image: junofx/luna:0.1.0
+    env_file:
+      - .env
+    environment:
+      - BUDDY=polaris
+    ports:
+      - 3030:3030
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
 
   no-vnc:
+    tty: true
     image: dougw/novnc
     environment:
       - REMOTE_PORT=5901

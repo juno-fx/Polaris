@@ -1,5 +1,5 @@
 favorites=exo-terminal-emulator.desktop,exo-file-manager.desktop,exo-mail-reader.desktop,exo-web-browser.desktop
-recent=panel-preferences.desktop,xfce-wm-settings.desktop,xfce-settings-manager.desktop
+recent=exo-preferred-applications.desktop,exo-terminal-emulator.desktop,panel-preferences.desktop,xfce-wm-settings.desktop,xfce-settings-manager.desktop
 button-title=Applications
 button-icon=/usr/share/backgrounds/junofx/icon.png
 button-single-row=false
@@ -34,5 +34,5 @@ command-menueditor=menulibre
 show-command-menueditor=false
 command-profile=mugshot
 show-command-profile=false
-search-actions=5
+search-actions=0
 

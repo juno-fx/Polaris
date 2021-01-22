@@ -1,9 +1,8 @@
 FROM ubuntu:18.04
 
 # general updates
-RUN apt update -q \
-    && apt upgrade -y \
-    && apt install -y apt-utils
+RUN apt update \
+    && apt install apt-utils -y
 
 # system installs
 RUN export DEBIAN_FRONTEND=noninteractive \
@@ -13,43 +12,34 @@ RUN export DEBIAN_FRONTEND=noninteractive \
         xvfb \
         dbus-x11 \
         x11-utils \
-        xfonts-base \
-        xubuntu-desktop \
-        xubuntu-icon-theme \
-        xfce4-whiskermenu-plugin \
-        xfce4-goodies
+        xubuntu-desktop
 
 # theme installs
 RUN apt install -y --no-install-recommends \
         arc-theme \
         nautilus \
-        menulibre \
-        curl \
-        git \
-    && mkdir -p /root/.config \
-    && xdg-mime default nautilus.desktop inode/directory application
+        xubuntu-icon-theme \
+        xfce4-whiskermenu-plugin \
+        xfce4-goodies
 
-# application imstalls
+# application installs
 RUN apt install -y --no-install-recommends \
         zsh \
         firefox \
-        geany \
         vim \
         neofetch \
-        wget \
+        curl \
+        git \
     && sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" \
     && chsh -s $(which zsh) \
-    && wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf \
-    && wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf \
-    && mkdir ~/.fonts/ \
-    && mv PowerlineSymbols.otf ~/.fonts/ \
-    && mkdir -p ~/.config/fontconfig/conf.d/ \
-    && fc-cache -vf ~/.fonts/ \
-    && mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/ \
-    && git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+    && apt remove -y \
+        curl \
+        git
 
 # clean up
-RUN apt autoclean -y \
+RUN apt-get remove -y --auto-remove thunar \
+    && apt-get purge -y --auto-remove thunar  \
+    && apt autoclean -y \
     && apt autoremove -y \
     && apt clean \
     && rm -rf /var/lib/apt/lists/*

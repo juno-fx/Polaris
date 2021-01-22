@@ -1,3 +1,4 @@
 FileManager=nautilus
-TerminalEmulator=debian-x-terminal-emulator
+TerminalEmulator=xfce4-terminal
+WebBrowser=firefox
 

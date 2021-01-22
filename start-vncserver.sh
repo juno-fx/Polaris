@@ -4,7 +4,7 @@ usermod -d /$USR $USR
 
 cp -R /root /$USR
 
-chown -R $USR /$USR
+chown -R $USR:$USR /$USR
 rm -rf /tmp/.X1*
 chsh -s $(which zsh) $USR
 
